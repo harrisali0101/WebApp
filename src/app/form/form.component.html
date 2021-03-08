@@ -1,0 +1,103 @@
+
+<div class="row">
+    <div class="col-md-3">
+        <button class="btn btn-info btn-lg btn-block"  id="back-list" (click)="change()">BACK TO LIST</button>
+    </div>
+    <div class="col-md-6">
+        <div class="jumbotron py-3">
+            <h1 class="text-center">
+                Applicants Form
+            </h1>
+        </div>
+    
+        <form novalidate #form="ngForm" (submit)="onSubmit(form)" >
+            <input type="hidden" name="id"
+            [value]="service.formData.id"/>
+            <div class="form-group">
+                <label>First Name:</label>
+                <input class="form-control form-control-lg" placeholder="Enter First Name"
+                name="name" #name="ngModel" [(ngModel)]="service.formData.name"
+                required minlength="5" 
+                [class.invalid]="name.invalid && name.touched" 
+                [class.valid]="name.valid">
+            </div>
+            <div class="form-group">
+                <label>Family Name:</label>
+                <input class="form-control form-control-lg" placeholder="Enter Family Name"
+                name="familyName" #familyName="ngModel" [(ngModel)]="service.formData.familyName"
+                required minlength="5"
+                [class.invalid]="familyName.invalid && familyName.touched" 
+                [class.valid]="familyName.valid">
+            </div>
+            <div class="form-group">
+                <label>Address:</label>
+                <input class="form-control form-control-lg" placeholder="Enter Address"
+                name="address" #address="ngModel" [(ngModel)]="service.formData.address"
+                required minlength="10"
+                [class.invalid]="address.invalid && address.touched" 
+                [class.valid]="address.valid">
+            </div>
+            <div class="form-group">
+                <label>Country:</label>
+                <input class="form-control form-control-lg" placeholder="Enter Country"
+                name="countryOfOrigin" #countryOfOrigin="ngModel" [(ngModel)]="service.formData.countryOfOrigin"
+                required 
+                [class.invalid]="countryOfOrigin.invalid && countryOfOrigin.touched && validCountry" 
+                [class.valid]="countryOfOrigin.valid">
+            </div>
+            <div *ngIf="countryOfOrigin?.invalid && (countryOfOrigin.dirty || countryOfOrigin.touched)">
+                <div *ngIf="countryOfOrigin.errors.required" class="alert alert-danger">
+                  countryOfOrigin is required and must not be invalid.
+                </div>
+              </div>
+
+            <div class="form-group">
+                <label>Email Address:</label>
+                <input type="email" pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$" class="form-control form-control-lg" placeholder="Enter your Email Address"
+                name="emailAddress" #emailAddress="ngModel" [(ngModel)]="service.formData.emailAddress"
+                required
+                [class.invalid]="emailAddress.invalid && emailAddress.touched" 
+                [class.valid]="emailAddress.valid">
+            </div>
+            <div class="row">
+                <div class="form-group col-md-3">
+                    <label>Age:</label>
+                    <input type="number" pattern="[2-5][0-9]|(60)"  class="form-control form-control-lg" placeholder="Enter your Age"
+                    name="age" #age="ngModel" [(ngModel)]="service.formData.age"
+                    required 
+                    [class.invalid]="age.invalid && age.touched" 
+                    [class.valid]="age.valid">
+                </div>
+                <div class="col-md-9" *ngIf="age?.invalid && (age.dirty || age.touched)">
+                    <div *ngIf="age.errors.required" class="alert alert-danger">
+                      Age is required and must be in 20-60 range.
+                    </div>
+                  </div>
+                </div>
+            <div class="row">
+                <div id="hired-set" class="form-group col-md-3">
+                    <label>Hired:</label>
+                    <div class="form-control">
+                        <label class="checkbox-inline">
+                            <input type="checkbox" name="hired" #hired="ngModel"
+                            [(ngModel)]="service.formData.hired"> Yes
+                        </label>
+                    </div>
+                </div>
+    
+            </div>
+            
+            <div class="form-group row">
+                <div class="form-group col-md-6">
+                    <button class="btn btn-info btn-lg btn-block" type="submit" [disabled]="form.invalid">SUBMIT</button>
+                </div>
+                <div class="form-group col-md-6">
+                    <button class="btn btn-info btn-lg btn-block" type="reset" [disabled]="form.invalid">RESET</button>
+                </div>    
+            </div>
+            
+        </form>
+    
+    </div>
+    
+</div>

@@ -1,0 +1,50 @@
+.form-group label{
+    color:grey;
+}
+
+.form-group input{
+    font-weight: 400;
+}
+
+.form-group input::placeholder{
+    color: #c0bdbd;
+    font-weight: 300;
+}
+
+thead th{
+    font-weight: 400;
+}
+
+table tbody tr:hover{
+    background-color: #fffbf2;
+    cursor: pointer;
+}
+
+input.invalid{
+    border-color: red;
+    border-width: .05cm;
+}
+
+input.valid{
+    border-color: rgb(9, 199, 9);
+    border-width: .07cm;
+}
+
+#add-new{
+
+    margin-top: 29px;
+    margin-left: 180px;
+    
+}
+#header-main{
+    margin-left: 250px;
+}
+
+#hired-set{
+    padding-top: mm;
+}
+
+#back-list{
+    font-size: inherit;
+    margin: 7mm;
+}
